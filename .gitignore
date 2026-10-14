@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+venv/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Data (patient data GitHub e jabe na)
+data/
+*.csv
+!results/*.csv
