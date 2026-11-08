@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader, TensorDataset
 
 
 # Train a PyTorch model in place using mini-batch Adam optimization and BCEWithLogitsLoss.
-def train_model(model, X, y, epochs=100, lr=0.01, batch_size=32, seed=42):
+def train_model(model, X, y, epochs=100, lr=0.01, batch_size=32, seed=42, weight_decay=0.0):
     generator = torch.Generator()
     generator.manual_seed(seed)
 
@@ -24,7 +24,7 @@ def train_model(model, X, y, epochs=100, lr=0.01, batch_size=32, seed=42):
     )
 
     criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
 
     epoch_losses = []
     model.train()

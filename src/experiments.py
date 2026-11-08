@@ -25,7 +25,7 @@ def compute_majority_baseline(y):
 
 # Train a single centralized MLP on pooled train sets from all 4 hospitals
 # and evaluate on each hospital's test set and the pooled test set ("ALL").
-def run_centralized_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, return_artifacts=False):
+def run_centralized_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, weight_decay=0.0, return_artifacts=False):
     hospitals = load_clean()
     splits = split_all(hospitals, seed=seed)
 
@@ -50,6 +50,7 @@ def run_centralized_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, return_arti
         lr=lr,
         batch_size=batch_size,
         seed=seed,
+        weight_decay=weight_decay,
     )
 
     results = []
@@ -115,7 +116,7 @@ def run_centralized_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, return_arti
 
 # Train a separate isolated MLP for each hospital on its own train set only
 # and evaluate each on its own test set, with ALL being concatenated predictions.
-def run_isolated_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, return_artifacts=False):
+def run_isolated_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, weight_decay=0.0, return_artifacts=False):
     hospitals = load_clean()
     splits = split_all(hospitals, seed=seed)
 
@@ -152,6 +153,7 @@ def run_isolated_mlp(seed=42, epochs=100, lr=0.01, batch_size=32, return_artifac
             lr=lr,
             batch_size=batch_size,
             seed=seed,
+            weight_decay=weight_decay,
         )
 
         # Evaluate on its own test set
