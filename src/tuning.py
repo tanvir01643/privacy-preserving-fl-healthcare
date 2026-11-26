@@ -102,8 +102,8 @@ def select_hyperparams(seed=42, return_artifacts=False):
 
     grid_df = pd.DataFrame(results)
 
-    # Save full grid to results/tuning_grid.csv
-    results_path = Path("results/tuning_grid.csv")
+    # Save full grid to results/tuning_grid_seed<seed>.csv
+    results_path = Path(f"results/tuning_grid_seed{seed}.csv")
     results_path.parent.mkdir(parents=True, exist_ok=True)
     grid_df.to_csv(results_path, index=False)
 
